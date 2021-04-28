@@ -20,7 +20,7 @@
         <div>
             <div class="form-group">
                 <h4>Category:</h4>
-                <h4>@forecast.category</h4>
+                <div>@forecast.category</div>
             </div>
             <div class="form-group">
                 <h4>Question:</h4>
@@ -28,11 +28,7 @@
             </div>
             <div class="form-group">
                 <h4>Answer:</h4>
-                <h4>@foreach (var answer in forecast.incorrect_answers)
-                    {
-                        answer;
-                        <br/>
-                    }                     
+                <h4>@forecast.correct_answer
                 </h4>
             </div>
         </div>

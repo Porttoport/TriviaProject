@@ -22,6 +22,7 @@ namespace TriviaProject.Models
         [MinLength(8, ErrorMessage = "must be at least 8 characters")]
         [DataType(DataType.Password)] // auto fills input type attr
         public string Password { get; set; }
+        public int Score { get; set; } = 0;
 
         [NotMapped] // don't add to DB
         [DataType(DataType.Password)]
@@ -30,5 +31,15 @@ namespace TriviaProject.Models
         public string PasswordConfirm { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
+        //========================================================================
+        //relationships
+
+        [InverseProperty("User2")]
+        public List<Duel> User1Duels { get; set; }
+
+        [InverseProperty("User1")]
+        public List<Duel> User2Duels { get; set; }
+
     }
 }

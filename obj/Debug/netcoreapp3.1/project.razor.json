@@ -14427,6 +14427,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Duel\\_AnswerForm.cshtml",
+      "TargetPath": "Views\\Duel\\_AnswerForm.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Home\\_Login.cshtml",
       "TargetPath": "Views\\Home\\_Login.cshtml",
       "FileKind": "mvc"
@@ -14454,6 +14459,16 @@
     {
       "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Duel\\UserDetail.cshtml",
+      "TargetPath": "Views\\Duel\\UserDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Duel\\Duel.cshtml",
+      "TargetPath": "Views\\Duel\\Duel.cshtml",
       "FileKind": "mvc"
     }
   ],

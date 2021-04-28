@@ -6,6 +6,8 @@ namespace TriviaProject.Models
 {
     public class Result
     {
+        [Key]
+        public int ResultId { get; set; }
         public string category { get; set; }
         public string type { get; set; }
         public string difficulty { get; set; }

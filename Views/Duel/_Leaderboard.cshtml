@@ -1,0 +1,10 @@
+@model User
+
+
+<ol>
+    @foreach (User player in ViewBag.Leaderboard)
+    {
+        <li> @player.UserName @player.Score</li>
+
+    }
+</ol>

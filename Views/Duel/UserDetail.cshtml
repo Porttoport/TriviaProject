@@ -1,0 +1,52 @@
+@model User
+
+@{
+    ViewData["Title"] = "User Details";
+    int? uid = @Context.Session.GetInt32("UserId");
+
+}
+
+<div>
+
+    <div>
+        <h4>Username:</h4>
+        <h4>@Model.UserName</h4>
+    </div>
+
+    <div>
+        <h4>Joined:</h4>
+        <h4>@Model.CreatedAt</h4>
+    </div>
+
+    <div>
+        <h4>Score:</h4>
+        <h4>@Model.Score</h4>
+    </div>
+</div>
+
+<div>
+    <div>
+        <h3>Position on Leaderboard:</h3>
+        <h3>@ViewBag.Position</h3>
+    </div>
+
+    <div>
+        @{
+            bool existingDuel = Model.User1Duels.Any(duel => duel.User1Id == (int)uid);
+
+            if (existingDuel && Model.UserId == uid)
+            {
+                <div>
+                    <a asp-controller="Duel" asp-action="Duel">
+                        Accept Duel
+                    </a>
+                    <a asp-controller="Duel" asp-action="Forfeit">
+                        Forfeit Duel
+                    </a>
+                </div>
+            }
+
+        }
+    </div>
+
+</div>

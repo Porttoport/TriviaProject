@@ -1,9 +1,17 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace TriviaProject.Models
 {
     public class Duel
     {
-        public int DuelId {get;set;}
-        public User UserId1 {get;set;}
-        public User UserId2 {get;set;}
+        [Key]
+        public int DuelId { get; set; }
+
+        public int User1Id { get; set; }
+        public User User1 { get; set; }
+
+        public int User2Id { get; set; }
+        public User User2 { get; set; }
     }
 }

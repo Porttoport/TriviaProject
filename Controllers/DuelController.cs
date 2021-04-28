@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using TriviaProject.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace TriviaProject.Controllers
 {
@@ -55,18 +56,101 @@ namespace TriviaProject.Controllers
         [HttpGet("/leaderboard")]
         public IActionResult Leaderboard()
         {
-            List<User> Leaderboard = _context.Users.Include(user => user).ThenInclude(rel => rel.UserParticipant).Include(Game => Game.Coordinator).OrderByDescending(p => p.CreatedAt).ToList();
-            ViewBag.Games = AllGames;
+            List<User> Leaderboard = _context.Users.Include(user => user.User1Duels).OrderByDescending(p => p.Score).ToList();
+            ViewBag.Leaderboard = Leaderboard;
 
-            User LoggedInUser = _context.Users.Include(u => u.LedGames).ThenInclude(games => games.UserParticipant).Include(u => u.MyGames).FirstOrDefault(u => u.UserId == uid);
+            User LoggedInUser = _context.Users.Include(u => u.User1Duels).ThenInclude(duel => duel.User2).FirstOrDefault(u => u.UserId == uid);
             return View("_Leaderboard");
         }
 
 
+        [HttpGet("/user/detail/{userId}")]
+        public IActionResult UserDetail(int userId)
+        {
+            List<User> Leaderboard = _context.Users
+            .Include(user => user.User1Duels)
+            .ThenInclude(duel => duel.User2)
+            .OrderByDescending(p => p.Score).ToList();
 
-        // ==========================================================================================
-        // ==============================    API call handling   ====================================
-        // ==========================================================================================
+            int count = 0;
+            foreach (User leader in Leaderboard)
+            {
+                count++;
+                if (leader.UserId == userId)
+                {
+                    break;
+                }
+            }
+            ViewBag.Position = count;
+            ViewBag.Leaderboard = Leaderboard;
+
+            User LoggedInUser = _context.Users
+            .Include(u => u.User1Duels)
+            .ThenInclude(duel => duel.User2)
+            .FirstOrDefault(u => u.UserId == uid);
+
+            return View(Leaderboard);
+        }
+
+        [HttpGet("/challengeDuel/{userId}")]
+        public IActionResult ChallengeDuel(int userId)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("LoginRegPage", "Home");
+            }
+
+            Duel existingDuel = _context.Duels.FirstOrDefault(duel => duel.User1Id == (int)uid && duel.User2Id == userId || duel.User1Id == userId && duel.User2Id == (int)uid)
+
+            if (!existingDuel)
+            {
+                Duel newDuel = new Duel()
+                {
+                    User1Id = (int)uid,
+                    User2Id = userId,
+                };
+                _context.Duels.Add(newDuel);
+                _context.SaveChanges();
+            }
+
+
+            User LoggedInUser = _context.Users.Include(u => u.User1Duels).ThenInclude(duel => duel.User2).FirstOrDefault(u => u.UserId == uid);
+
+
+            return RedirectToAction("Duel", "Duel");
+        }
+
+        [HttpGet("/ForfeitDuel/{userId}")]
+        public IActionResult ForfeitDuel(int userId)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("LoginRegPage", "Home");
+            }
+
+            Duel existingDuel = _context.Duels.FirstOrDefault(duel => duel.User1Id == (int)uid);
+            User Challenger = _context.Users.Include(u => u.User1Duels).ThenInclude(duel => duel.User2).FirstOrDefault(u => u.UserId == userId);
+            User LoggedInUser = _context.Users.Include(u => u.User1Duels).ThenInclude(duel => duel.User2).FirstOrDefault(u => u.UserId == uid);
+
+            if (existingDuel != null)
+            {
+                //add functionality to add points to challenger score
+                Challenger.Score += 100;
+                LoggedInUser.Score -= 100;
+
+                //delete duel relationship
+                _context.Duels.Remove(existingDuel);
+                _context.SaveChanges();
+
+            }
+
+            return RedirectToAction("Leaderboard", "Duel");
+        }
+
+
+
+        // ================================================================================================================================
+        //                                              API call handling   =================================================================================================================================
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -120,7 +204,6 @@ namespace TriviaProject.Controllers
         public async Task<IActionResult> Index()
         {
             var model = await GetResults();
-            // Pass the data into the View
             return View("Dashboard", model);
         }
 

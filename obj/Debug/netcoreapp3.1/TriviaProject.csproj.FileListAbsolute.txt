@@ -62,3 +62,7 @@ C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microso
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Polly.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Polly.Extensions.Http.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\Razor\Views\Duel\Dashboard.cshtml.g.cs
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\Razor\Views\Duel\_Leaderboard.cshtml.g.cs
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\Razor\Views\Duel\Duel.cshtml.g.cs
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\Razor\Views\Duel\UserDetail.cshtml.g.cs
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\Razor\Views\Duel\_AnswerForm.cshtml.g.cs

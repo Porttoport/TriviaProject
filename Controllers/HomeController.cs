@@ -24,6 +24,7 @@ namespace TriviaProject.Controllers
             }
         }
 
+
         private bool isLoggedIn
         {
             get
