@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TriviaProject.Models;
+using Polly;
 using Microsoft.EntityFrameworkCore;
 
 namespace TriviaProject
@@ -29,6 +30,16 @@ namespace TriviaProject
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddHttpContextAccessor();
             services.AddDbContext<TriviaContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
+            services.AddHttpClient("Api Client", client =>
+            {
+                client.BaseAddress = new Uri("https://opentdb.com/api.php");
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            }).AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[]{
+                TimeSpan.FromSeconds(1),
+                TimeSpan.FromSeconds(5),
+                TimeSpan.FromSeconds(10)
+            }));
+
 
         }
 

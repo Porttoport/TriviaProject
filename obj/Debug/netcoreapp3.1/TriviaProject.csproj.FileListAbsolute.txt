@@ -17,9 +17,6 @@ C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microso
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
-C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
@@ -60,4 +57,8 @@ C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\staticw
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\TriviaProject.dll
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\TriviaProject.pdb
 C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\TriviaProject.genruntimeconfig.cache
-C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Dashboard.cshtml.g.cs
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Http.dll
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Http.Polly.dll
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Polly.dll
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\bin\Debug\netcoreapp3.1\Polly.Extensions.Http.dll
+C:\Users\willi\Desktop\CSharpStack\TriviaProject\obj\Debug\netcoreapp3.1\Razor\Views\Duel\Dashboard.cshtml.g.cs

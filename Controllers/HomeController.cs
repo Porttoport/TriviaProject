@@ -41,7 +41,7 @@ namespace TriviaProject.Controllers
 
             HttpContext.Session.SetInt32("UserId", newUser.UserId);
             HttpContext.Session.SetString("UserName", newUser.UserName);
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("Dashboard", "Duel");
         }
 
         [HttpPost("/login")]
@@ -73,7 +73,7 @@ namespace TriviaProject.Controllers
 
             HttpContext.Session.SetInt32("UserId", dbUser.UserId);
             HttpContext.Session.SetString("UserName", dbUser.UserName);
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("Dashboard", "Duel");
         }
 
         [HttpPost("/logout")]
@@ -87,11 +87,6 @@ namespace TriviaProject.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-        [HttpGet("/dashboard")]
-        public IActionResult Dashboard()
-        {
-            return View();
         }
     }
 }

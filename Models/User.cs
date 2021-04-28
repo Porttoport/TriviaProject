@@ -9,6 +9,7 @@ namespace TriviaProject.Models
     {
         [Key]
         public int UserId { get; set; }
+
         [Required(ErrorMessage = "is required.")]
         [MinLength(2, ErrorMessage = "must be at least 2 characters")]
         public string UserName { get; set; }

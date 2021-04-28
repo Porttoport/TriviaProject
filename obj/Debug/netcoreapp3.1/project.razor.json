@@ -14432,8 +14432,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Home\\Dashboard.cshtml",
-      "TargetPath": "Views\\Home\\Dashboard.cshtml",
+      "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Duel\\Dashboard.cshtml",
+      "TargetPath": "Views\\Duel\\Dashboard.cshtml",
       "FileKind": "mvc"
     },
     {

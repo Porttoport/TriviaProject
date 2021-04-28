@@ -6,5 +6,6 @@ namespace TriviaProject.Models
     {
         public TriviaContext(DbContextOptions options) : base(options) { }
         public DbSet<User> Users { get; set; }
+        public DbSet<Duel> Duels { get; set; }
     }
 }

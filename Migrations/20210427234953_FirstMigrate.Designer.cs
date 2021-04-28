@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TriviaProject.Models;
 
 namespace TriviaProject.Migrations
 {
     [DbContext(typeof(TriviaContext))]
-    partial class TriviaContextModelSnapshot : ModelSnapshot
+    [Migration("20210427234953_FirstMigrate")]
+    partial class FirstMigrate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
