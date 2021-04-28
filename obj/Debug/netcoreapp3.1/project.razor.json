@@ -14437,6 +14437,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Duel\\_Leaderboard.cshtml",
+      "TargetPath": "Views\\Duel\\_Leaderboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\willi\\Desktop\\CSharpStack\\TriviaProject\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"

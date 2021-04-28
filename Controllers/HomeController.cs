@@ -13,6 +13,24 @@ namespace TriviaProject.Controllers
 {
     public class HomeController : Controller
     {
+        private int? uid
+        {
+            get
+            {
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // HttpContext.Session.SetInt32("UserId", 2); ////////////////////////////////////////////////////////////////////delete this 4 exam!
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                return HttpContext.Session.GetInt32("UserId");
+            }
+        }
+
+        private bool isLoggedIn
+        {
+            get
+            {
+                return uid != null;
+            }
+        }
         private TriviaContext _context;
 
         public HomeController(TriviaContext context)

@@ -15,6 +15,24 @@ namespace TriviaProject.Controllers
 {
     public class DuelController : Controller
     {
+        private int? uid
+        {
+            get
+            {
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // HttpContext.Session.SetInt32("UserId", 1); ////////////////////////////////////////////////////////////////////delete this 4 exam!
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                return HttpContext.Session.GetInt32("UserId");
+            }
+        }
+
+        private bool isLoggedIn
+        {
+            get
+            {
+                return uid != null;
+            }
+        }
 
         private TriviaContext _context;
 
@@ -33,6 +51,22 @@ namespace TriviaProject.Controllers
             return View("Dashboard", model);
         }
 
+
+        [HttpGet("/leaderboard")]
+        public IActionResult Leaderboard()
+        {
+            List<User> Leaderboard = _context.Users.Include(user => user).ThenInclude(rel => rel.UserParticipant).Include(Game => Game.Coordinator).OrderByDescending(p => p.CreatedAt).ToList();
+            ViewBag.Games = AllGames;
+
+            User LoggedInUser = _context.Users.Include(u => u.LedGames).ThenInclude(games => games.UserParticipant).Include(u => u.MyGames).FirstOrDefault(u => u.UserId == uid);
+            return View("_Leaderboard");
+        }
+
+
+
+        // ==========================================================================================
+        // ==============================    API call handling   ====================================
+        // ==========================================================================================
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -93,37 +127,3 @@ namespace TriviaProject.Controllers
     }
 }
 
-
-// // Reference Newtonsoft
-// using Newtonsoft.Json;
-
-// // ... other code...
-
-//     private async Task<Result> GetResults()
-//     {
-//         // Get an instance of HttpClient from the factpry that we registered
-//         // in Startup.cs
-//         var client = _httpClientFactory.CreateClient("API Client");
-
-//         // Call the API & wait for response. 
-//         // If the API call fails, call it again according to the re-try policy
-//         // specified in Startup.cs
-//         var result = await client.GetAsync($"?amount=10&category=12&difficulty=medium&type=boolean");
-//    //alternate version with variables     var result = await client.GetAsync($"?amount={amount}&category={categoryId}&difficulty={difficulty}&type={answerType}");
-
-//         if (result.IsSuccessStatusCode)
-//         {
-//             // Read all of the response and deserialise it into an instace of
-//             // Result class
-//             var content = await result.Content.ReadAsStringAsync();
-//             return JsonConvert.DeserializeObject<Result>(content);
-//         }
-//         return null;
-//     }
-
-//     public async Task<IActionResult> Index()
-//     {
-//         var model = await GetResults();
-//         // Pass the data into the View
-//         return View(model);
-//     }
