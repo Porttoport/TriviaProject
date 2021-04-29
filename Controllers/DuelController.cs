@@ -21,12 +21,11 @@ namespace TriviaProject.Controllers
             get
             {
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                // HttpContext.Session.SetInt32("UserId", 1); ////////////////////////////////////////////////////////////////////delete this 4 exam!
+                HttpContext.Session.SetInt32("UserId", 1); ////////////////////////////////////////////////////////////////////delete this 4 exam!
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 return HttpContext.Session.GetInt32("UserId");
             }
         }
-
         private bool isLoggedIn
         {
             get
@@ -47,7 +46,13 @@ namespace TriviaProject.Controllers
         [HttpGet("/dashboard")]
         public async Task<IActionResult> Dashboard()
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //add functionality to change the trivia of the day question when datetime.now > lastSavedDate +1
             var model = await GetResults();
+            ViewBag.Leaderboard = _context.Users.OrderBy(a => a.Score);
 
             return View("Dashboard", model);
         }
@@ -55,8 +60,13 @@ namespace TriviaProject.Controllers
         [HttpGet("/duel/{duelId}")]
         public async Task<IActionResult> Duel(int duelId)
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var model = await GetResults();
             ViewBag.question = model;
+
 
             return View("Duel", duelId);
         }
@@ -65,6 +75,10 @@ namespace TriviaProject.Controllers
         [HttpGet("/leaderboard")]
         public IActionResult Leaderboard()
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             List<User> Leaderboard = _context.Users.Include(user => user.User1Duels).OrderByDescending(p => p.Score).ToList();
             ViewBag.Leaderboard = Leaderboard;
 
@@ -76,29 +90,34 @@ namespace TriviaProject.Controllers
         [HttpGet("/user/detail/{userId}")]
         public IActionResult UserDetail(int userId)
         {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             List<User> Leaderboard = _context.Users
             .Include(user => user.User1Duels)
             .ThenInclude(duel => duel.User2)
             .OrderByDescending(p => p.Score).ToList();
 
             int count = 0;
+            //counts the position on the leaderboard for the specific user ie first place
             foreach (User leader in Leaderboard)
             {
                 count++;
                 if (leader.UserId == userId)
                 {
-                    break;
+                    break; //exit loop when reach User
                 }
             }
             ViewBag.Position = count;
             ViewBag.Leaderboard = Leaderboard;
 
-            User LoggedInUser = _context.Users
+            User UserDetail = _context.Users
             .Include(u => u.User1Duels)
             .ThenInclude(duel => duel.User2)
-            .FirstOrDefault(u => u.UserId == uid);
+            .FirstOrDefault(u => u.UserId == userId);
 
-            return View(Leaderboard);
+            return View(UserDetail);
         }
 
         [HttpGet("/challengeDuel/{userId}")]
@@ -109,9 +128,9 @@ namespace TriviaProject.Controllers
                 return RedirectToAction("LoginRegPage", "Home");
             }
 
-            Duel existingDuel = _context.Duels.FirstOrDefault(duel => duel.User1Id == (int)uid && duel.User2Id == userId || duel.User1Id == userId && duel.User2Id == (int)uid)
+            Duel existingDuel = _context.Duels.FirstOrDefault(duel => duel.User1Id == (int)uid && duel.User2Id == userId || duel.User1Id == userId && duel.User2Id == (int)uid);
 
-            if (!existingDuel)
+            if (existingDuel == null)
             {
                 Duel newDuel = new Duel()
                 {
@@ -154,6 +173,28 @@ namespace TriviaProject.Controllers
             }
 
             return RedirectToAction("Leaderboard", "Duel");
+        }
+
+
+
+        [HttpPost("/answer")]
+        public IActionResult Answer(Result Newanswer)
+        {
+            if (!isLoggedIn)
+            {
+                return RedirectToAction("LoginRegPage", "Home");
+            }
+
+            User LoggedInUser = _context.Users.Include(u => u.User1Duels).ThenInclude(duel => duel.User2).FirstOrDefault(u => u.UserId == uid);
+
+            if (!ModelState.IsValid)
+            {
+                LoggedInUser.Score -= 10;
+                // To display validation errors.
+                return View("NewGame");
+            }
+
+            return RedirectToAction("Duel");
         }
 
 

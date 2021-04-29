@@ -1,6 +1,8 @@
 @model User
+@using Microsoft.AspNetCore.Http;
 
 @{
+
     ViewData["Title"] = "User Details";
     int? uid = @Context.Session.GetInt32("UserId");
 

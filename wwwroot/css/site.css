@@ -18,7 +18,8 @@ a {
   border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
@@ -43,7 +44,7 @@ html {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
 button.accept-policy {
@@ -57,11 +58,98 @@ html {
   position: relative;
   min-height: 100%;
 }
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+/* @keyframes backgroundScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -180px 0px;
+  }
 }
+@-webkit-keyframes backgroundScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -180px 0px;
+  }
+} */
+
+/* body {
+  /* margin-bottom: 60px; 
+
+  color: #fff;
+  text-align: center;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Puzzle_(Unsplash).jpg/1200px-Puzzle_(Unsplash).jpg");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-size: 12px;
+  font-family: "Dancing Script", cursive;
+  -webkit-animation: backgroundScroll 15s linear 1;
+  -webkit-animation-fill-mode: forwards;
+  animation: backgroundScroll 15s linear 1;
+  animation-fill-mode: forwards;
+}  */
+main {
+  background-color: black;
+  color: white;
+}
+body {
+  /* background: #2980b9 url('http://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0; */
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Puzzle_(Unsplash).jpg/1200px-Puzzle_(Unsplash).jpg");
+  -webkit-animation: 10s linear 0s normal none infinite animate;
+  -moz-animation: 10s linear 0s normal none infinite animate;
+  -ms-animation: 10s linear 0s normal none infinite animate;
+  -o-animation: 10s linear 0s normal none infinite animate;
+  animation: 10s linear 0s normal none infinite animate;
+}
+
+@-webkit-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@-moz-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@-ms-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@-o-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
 .footer {
   position: absolute;
   bottom: 0;

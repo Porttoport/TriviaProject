@@ -1,10 +1,10 @@
-@model User
+@* @model User *@
 
-
+<h3>Leaderboard</h3>
 <ol>
     @foreach (User player in ViewBag.Leaderboard)
     {
-        <li> @player.UserName @player.Score</li>
+        <li> <a href="user/detail/@player.UserId">@player.UserName</a> @player.Score</li>
 
     }
 </ol>

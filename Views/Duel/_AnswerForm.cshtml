@@ -4,9 +4,11 @@
 <form asp-action="DuelAnswer" asp-controller="Duel">
     <span asp-validation-for="correct_answer"></span>
     <label asp-for="correct_answer">True</label>
-    <input type="radio" asp-for="correct_answer">
+    <input type="radio" asp-for="correct_answer" value="true">
+
+
     <span asp-validation-for="correct_answer"></span>
     <label asp-for="correct_answer">False</label>
-    <input type="radio" asp-for="correct_answer">
+    <input type="radio" asp-for="correct_answer" value="false">
     <input type="submit" value="Answer">
 </form>
