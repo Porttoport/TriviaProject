@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TriviaProject.Models
@@ -13,5 +14,6 @@ namespace TriviaProject.Models
 
         public int User2Id { get; set; }
         public User User2 { get; set; }
+        public List<Result> Trivia { get; set; }
     }
 }

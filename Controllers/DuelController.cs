@@ -52,6 +52,15 @@ namespace TriviaProject.Controllers
             return View("Dashboard", model);
         }
 
+        [HttpGet("/duel/{duelId}")]
+        public async Task<IActionResult> Duel(int duelId)
+        {
+            var model = await GetResults();
+            ViewBag.question = model;
+
+            return View("Duel", duelId);
+        }
+
 
         [HttpGet("/leaderboard")]
         public IActionResult Leaderboard()
